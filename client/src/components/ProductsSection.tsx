@@ -124,9 +124,19 @@ const ProductsSection = () => {
           </div>
         </motion.div>
         
-        <div className="text-center mt-12 p-4 bg-gray-100 rounded-lg">
-          <p className="text-gray-700 italic">
-            Prices may vary depending upon market conditions, but we guarantee the best prices!
+        <div className="text-center mt-12 p-6 bg-gray-100 rounded-lg shadow-sm">
+          <h4 className="font-semibold text-lg text-[#6d6875] mb-2">Pricing Information</h4>
+          <p className="text-gray-700">
+            Current prices shown are indicative. Actual prices may vary based on:
+          </p>
+          <ul className="text-sm text-gray-600 mt-2 space-y-1 max-w-lg mx-auto">
+            <li>• Quantity ordered (bulk discounts available)</li>
+            <li>• Current market conditions</li>
+            <li>• Seasonal variations</li>
+            <li>• Special promotions (check with our store)</li>
+          </ul>
+          <p className="text-[#b5838d] font-medium mt-3">
+            We guarantee competitive pricing and price matching with authorized dealers!
           </p>
         </div>
       </div>
