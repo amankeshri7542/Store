@@ -101,7 +101,7 @@ export const materialProducts: Product[] = [
   {
     id: 10,
     name: "Boards",
-    image: "/board1.webp",
+    image: "board1.webp",
     description: "High-quality boards for interior and exterior use.",
     price: 500,
     rating: 5.0,
