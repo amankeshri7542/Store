@@ -127,7 +127,7 @@ const ProductsSection = () => {
         <div className="text-center mt-12 p-6 bg-gray-100 rounded-lg shadow-sm">
           <h4 className="font-semibold text-lg text-[#6d6875] mb-2">Pricing Information</h4>
           <p className="text-gray-700">
-            Current prices shown are indicative. Actual prices may vary based on:
+            Current prices shown are approximate. Actual prices may vary based on:
           </p>
           <ul className="text-sm text-gray-600 mt-2 space-y-1 max-w-lg mx-auto">
             <li>• Quantity ordered (bulk discounts available)</li>
