@@ -10,7 +10,7 @@ const HeroSection = () => {
       id="home" 
       className="relative pt-24 md:pt-0 min-h-screen flex items-center"
       style={{ 
-        background: "linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('/Front_View.png') center/cover no-repeat"
+        background: "linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('Front_View.png') center/cover no-repeat"
       }}
     >
       <div className="container mx-auto px-4 text-center py-20">

@@ -13,7 +13,7 @@ export const cementProducts: Product[] = [
   {
     id: 1,
     name: "UltraTech Cement",
-    image: "/cment_Bags.webp",
+    image: "cment_Bags.webp",
     description: "Premium quality cement for all construction needs.",
     price: 500,
     rating: 4.5,

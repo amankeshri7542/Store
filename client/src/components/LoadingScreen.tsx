@@ -23,7 +23,7 @@ const LoadingScreen = () => {
         }}
       >
         <img 
-          src="/Om.jpg" 
+          src="Om.jpg" 
           alt="Om Symbol" 
           className="w-full h-full object-contain" 
         />

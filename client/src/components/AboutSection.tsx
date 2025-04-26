@@ -48,7 +48,7 @@ const AboutSection = () => {
           <div className="md:w-1/2 mt-8 md:mt-0">
             <div className="relative">
               <img 
-                src="/Flux_Dev_A_Big_cement_and_construction_materials_shop_in_India_1.jpg" 
+                src="Flux_Dev_A_Big_cement_and_construction_materials_shop_in_India_1.jpg" 
                 alt="Shiv Cement Store Exterior" 
                 className="rounded-lg shadow-xl w-full object-cover h-[400px]" 
               />
