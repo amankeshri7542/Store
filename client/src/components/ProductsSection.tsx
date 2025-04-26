@@ -8,7 +8,9 @@ type ProductCategory = "all" | "cement" | "steel" | "materials";
 
 const ProductsSection = () => {
   const [activeCategory, setActiveCategory] = useState<ProductCategory>("all");
-  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.1 });
+  const { ref: cementRef, isVisible: isCementVisible } = useIntersectionObserver({ threshold: 0.1 });
+  const { ref: steelRef, isVisible: isSteelVisible } = useIntersectionObserver({ threshold: 0.1 });
+  const { ref: materialsRef, isVisible: isMaterialsVisible } = useIntersectionObserver({ threshold: 0.1 });
 
   return (
     <section id="products" className="py-16 md:py-24 bg-white">
@@ -67,9 +69,9 @@ const ProductsSection = () => {
         
         {/* Cement Products */}
         <motion.div 
-          ref={ref}
+          ref={cementRef}
           initial={{ opacity: 0, y: 20 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          animate={isCementVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
           className={activeCategory === "all" || activeCategory === "cement" ? "block" : "hidden"}
         >
@@ -86,8 +88,9 @@ const ProductsSection = () => {
         
         {/* Steel Products */}
         <motion.div 
+          ref={steelRef}
           initial={{ opacity: 0, y: 20 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          animate={isSteelVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
           className={`mt-16 ${activeCategory === "all" || activeCategory === "steel" ? "block" : "hidden"}`}
         >
@@ -104,8 +107,9 @@ const ProductsSection = () => {
         
         {/* Materials Products */}
         <motion.div 
+          ref={materialsRef}
           initial={{ opacity: 0, y: 20 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          animate={isMaterialsVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
           className={`mt-16 ${activeCategory === "all" || activeCategory === "materials" ? "block" : "hidden"}`}
         >
