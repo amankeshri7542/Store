@@ -27,9 +27,9 @@ const Navbar = () => {
   return (
     <header className={`fixed top-0 left-0 w-full bg-white bg-opacity-95 z-50 transition-all duration-300 ${scrolled ? 'shadow-md py-2' : 'py-3'}`}>
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <Link href="/">
-          <a className="text-[#b5838d] font-poppins font-bold text-xl md:text-2xl">Shiv Cement Store</a>
-        </Link>
+        <div className="text-[#b5838d] font-poppins font-bold text-xl md:text-2xl cursor-pointer">
+          Shiv Cement Store
+        </div>
         <nav className="hidden md:block">
           <ul className="flex space-x-8">
             <li><a href="#home" className="text-[#6d6875] hover:text-[#b5838d] font-medium transition-colors">Home</a></li>

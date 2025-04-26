@@ -11,8 +11,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Validate the request body against the schema
       const contactData = contactSchema.parse(req.body);
       
-      // Save the contact form submission
-      const contact = await storage.createContact(contactData);
+      // Save the contact form submission with current timestamp
+      const contact = await storage.createContact({
+        ...contactData,
+        createdAt: new Date().toISOString()
+      });
       
       res.status(201).json({
         message: "Contact form submitted successfully",
