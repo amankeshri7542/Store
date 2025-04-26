@@ -22,7 +22,7 @@ const AboutSection = () => {
         >
           <div className="md:w-1/2">
             <p className="text-lg leading-relaxed text-gray-700 mb-6">
-              Started in 1999 from selling in kilos to now selling in trucks, Shiv Cement Store has built a reputation of trust and reliability among our 1000+ customers.
+              Started in 1999 from selling in kg to now selling in trucks, Shiv Cement Store has built a reputation of trust and reliability among our 1000+ customers.
             </p>
             <p className="text-lg leading-relaxed text-gray-700 mb-6">
               We pride ourselves on providing the highest quality construction materials at competitive prices. Our commitment to excellence has earned us recognition not only locally but globally.

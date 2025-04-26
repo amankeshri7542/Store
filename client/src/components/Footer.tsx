@@ -35,23 +35,15 @@ const Footer = () => {
             <h3 className="font-poppins font-medium text-lg mb-4">Business Hours</h3>
             <ul className="space-y-2 text-gray-300">
               <li className="flex justify-between">
-                <span>Monday - Friday:</span>
-                <span>9:00 AM - 7:00 PM</span>
-              </li>
-              <li className="flex justify-between">
-                <span>Saturday:</span>
-                <span>9:00 AM - 5:00 PM</span>
-              </li>
-              <li className="flex justify-between">
-                <span>Sunday:</span>
-                <span>10:00 AM - 2:00 PM</span>
+                <span>Mon-Sun:</span>
+                <span>6:00 AM - 7:00 PM</span>
               </li>
             </ul>
           </div>
         </div>
         
         <div className="border-t border-gray-700 mt-8 pt-8 text-center">
-          <p>© 2025 Shiv Cement Store - Built with ❤️</p>
+          <p>© 2025 Shiv Cement Store - Built by Aman ❤️</p>
         </div>
       </div>
     </footer>
