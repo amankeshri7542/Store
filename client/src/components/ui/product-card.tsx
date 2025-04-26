@@ -58,9 +58,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <p className="text-gray-600 mb-3 text-sm">{description}</p>
         <div className="flex justify-between items-center">
           <span className="text-[#b5838d] font-bold text-xl">₹{price}</span>
-          <button className="bg-[#ffcdb2] hover:bg-[#ffb4a2] text-[#6d6875] py-2 px-4 rounded-full text-sm font-medium transition-colors">
-            Add to Cart
-          </button>
+          <span className="text-gray-500 text-sm">Per unit</span>
         </div>
       </div>
     </div>

@@ -138,6 +138,11 @@ const ProductsSection = () => {
           <p className="text-[#b5838d] font-medium mt-3">
             We guarantee competitive pricing and price matching with authorized dealers!
           </p>
+          <div className="mt-4 pt-3 border-t border-gray-200">
+            <p className="font-medium text-[#6d6875]">
+              <span className="bg-yellow-100 px-2 py-1 rounded">Note:</span> For purchases, please visit our store or contact us directly.
+            </p>
+          </div>
         </div>
       </div>
     </section>
