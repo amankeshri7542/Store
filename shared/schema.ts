@@ -32,6 +32,7 @@ export const contactSchema = z.object({
   phone: z.string().min(10, "Phone number must be at least 10 digits"),
   email: z.string().email("Invalid email address").optional().or(z.literal("")),
   message: z.string().min(10, "Message must be at least 10 characters"),
+  createdAt: z.string().optional(),
 });
 
 export const insertContactSchema = createInsertSchema(contacts).pick({
@@ -39,6 +40,7 @@ export const insertContactSchema = createInsertSchema(contacts).pick({
   phone: true,
   email: true,
   message: true,
+  createdAt: true,
 });
 
 export type InsertContact = z.infer<typeof insertContactSchema>;

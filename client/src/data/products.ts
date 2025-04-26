@@ -13,7 +13,7 @@ export const cementProducts: Product[] = [
   {
     id: 1,
     name: "UltraTech Cement",
-    image: "https://images.unsplash.com/photo-1577646036505-3be513beb24d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
+    image: "/cment_Bags.webp",
     description: "Premium quality cement for all construction needs.",
     price: 500,
     rating: 4.5,
@@ -100,9 +100,9 @@ export const materialProducts: Product[] = [
   },
   {
     id: 10,
-    name: "Bricks",
-    image: "https://images.unsplash.com/photo-1635582943085-8d6f3c74555f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
-    description: "Solid clay bricks for durable wall construction.",
+    name: "Boards",
+    image: "/board1.webp",
+    description: "High-quality boards for interior and exterior use.",
     price: 500,
     rating: 5.0,
     category: "material"
