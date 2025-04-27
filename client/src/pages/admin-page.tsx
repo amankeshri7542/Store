@@ -18,6 +18,7 @@ const AdminPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
   const [saveMessage, setSaveMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -143,15 +144,24 @@ const AdminPage = () => {
               
               <div className="mb-6">
                 <label htmlFor="password" className="block text-foreground font-medium mb-2">Password</label>
-                <input 
-                  type="password" 
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full p-2 border border-border rounded bg-input text-foreground"
-                  placeholder="Enter password"
-                  required
-                />
+                <div className="relative">
+                  <input 
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full p-2 border border-border rounded bg-input text-foreground"
+                    placeholder="Enter password"
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                  >
+                    {showPassword ? "👁️" : "👁️‍🗨️"}
+                  </button>
+                </div>
               </div>
               
               {loginError && (
