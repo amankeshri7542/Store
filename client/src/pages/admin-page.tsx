@@ -62,8 +62,11 @@ const AdminPage = () => {
 
   // Handle price change
   const handlePriceChange = (id: number, newPrice: string) => {
-    const price = parseInt(newPrice);
-    if (isNaN(price)) return;
+    let price = parseFloat(newPrice);
+    if (isNaN(price) || price < 0) return;
+    
+    // Round to 2 decimal places to avoid floating point issues
+    price = Math.round(price * 100) / 100;
     
     setProducts(products.map(product => 
       product.id === id ? { ...product, price } : product
