@@ -35,7 +35,7 @@ const AdminPage = () => {
   const loadProducts = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch('/admin/products.json');
+      const response = await fetch('/api/admin/products');
       const data = await response.json();
       setProducts(data.products);
       setIsLoading(false);

@@ -3,8 +3,21 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { z } from "zod";
 import { contactSchema } from "@shared/schema";
+import * as path from 'path';
+import * as fs from 'fs';
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Get products endpoint
+  app.get("/api/admin/products", async (req: Request, res: Response) => {
+    try {
+      const productsFilePath = path.join(process.cwd(), '/public/admin/products.json');
+      const productsData = fs.readFileSync(productsFilePath, 'utf-8');
+      res.json(JSON.parse(productsData));
+    } catch (error) {
+      console.error('Error reading products:', error);
+      res.status(500).json({ error: "Failed to load products" });
+    }
+  });
   // Contact form submission endpoint
   app.post("/api/contact", async (req: Request, res: Response) => {
     try {
