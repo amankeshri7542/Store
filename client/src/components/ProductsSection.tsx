@@ -21,9 +21,9 @@ const ProductsSection = () => {
 
   // Fetch prices from admin JSON file
   const { data: priceData, isLoading } = useQuery({
-    queryKey: ['/admin/products.json'],
+    queryKey: ['/api/admin/products'],
     queryFn: async () => {
-      const response = await fetch('/admin/products.json');
+      const response = await fetch('/api/admin/products');
       if (!response.ok) {
         throw new Error('Failed to fetch updated prices');
       }

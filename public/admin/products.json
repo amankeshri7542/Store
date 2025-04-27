@@ -1,13 +1,14 @@
+
 {
   "products": [
     {
       "id": 1,
-      "name": "UltraTech Cement (PPC)",
+      "name": "UltraTech Cement",
       "price": 300
     },
     {
       "id": 2,
-      "name": "UltraTech Cement (OPC)",
+      "name": "ACC Cement",
       "price": 301
     },
     {
@@ -17,32 +18,32 @@
     },
     {
       "id": 4,
-      "name": "JSW Steel TMT Bars",
+      "name": "JK Cement",
       "price": 302
     },
     {
       "id": 5,
-      "name": "TATA Steel TMT Bars",
+      "name": "Tata Steel TMT Bars",
       "price": 70
     },
     {
       "id": 6,
-      "name": "Red Bricks (per thousand)",
+      "name": "Mahaveer Steel Rods",
       "price": 6500
     },
     {
       "id": 7,
-      "name": "Fly Ash Bricks",
+      "name": "Panther Steel Mesh",
       "price": 7000
     },
     {
       "id": 8,
-      "name": "Construction Sand (per ton)",
+      "name": "Red Bricks",
       "price": 3200
     },
     {
       "id": 9,
-      "name": "Stone Chips (per ton)",
+      "name": "Stone Chips",
       "price": 2800
     }
   ]
