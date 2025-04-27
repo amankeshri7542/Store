@@ -3,32 +3,32 @@
     {
       "id": 1,
       "name": "UltraTech Cement",
-      "price": 300
+      "price": 1
     },
     {
       "id": 2,
       "name": "ACC Cement",
-      "price": 301
+      "price": 2
     },
     {
       "id": 3,
       "name": "Ambuja Cement",
-      "price": 303
+      "price": 2
     },
     {
       "id": 4,
       "name": "JK Cement",
-      "price": 302
+      "price": 4
     },
     {
       "id": 5,
       "name": "Tata Steel TMT Bars",
-      "price": 70
+      "price": 5
     },
     {
       "id": 6,
       "name": "Mahaveer Steel Rods",
-      "price": 6500
+      "price": 6
     },
     {
       "id": 7,
