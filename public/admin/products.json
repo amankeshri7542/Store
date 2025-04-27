@@ -1,4 +1,3 @@
-
 {
   "products": [
     {
@@ -14,7 +13,7 @@
     {
       "id": 3,
       "name": "Ambuja Cement",
-      "price": 299
+      "price": 303
     },
     {
       "id": 4,
@@ -39,7 +38,7 @@
     {
       "id": 8,
       "name": "Red Bricks",
-      "price": 3200
+      "price": 320
     },
     {
       "id": 9,
