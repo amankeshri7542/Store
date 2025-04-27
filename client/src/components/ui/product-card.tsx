@@ -57,7 +57,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </div>
         <p className="text-muted-foreground mb-3 text-sm">{description}</p>
         <div className="flex justify-between items-center">
-          <span className="text-primary font-bold text-xl">₹{price}</span>
+          <span className="text-primary font-bold text-xl">₹{price.toString()}</span>
           <span className="text-muted-foreground text-sm">Per unit</span>
         </div>
       </div>
