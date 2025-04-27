@@ -61,8 +61,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // In a real app, you would save to a database here
       // For this example, we'll save to the JSON file
-      const fs = require('fs');
-      const path = require('path');
+      import * as fs from 'fs';
+      import * as path from 'path';
       
       const productsFilePath = path.join(process.cwd(), '/public/admin/products.json');
       
