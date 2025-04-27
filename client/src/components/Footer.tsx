@@ -1,4 +1,4 @@
-import { Facebook, Instagram, MessageCircle } from "lucide-react";
+
 
 const Footer = () => {
   return (
@@ -8,17 +8,6 @@ const Footer = () => {
           <div>
             <h3 className="font-poppins font-bold text-xl mb-4">Shiv Cement Store</h3>
             <p className="text-gray-300 mb-4">Providing quality construction materials since 1999. Your trusted partner for all building needs.</p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-white hover:text-[#ffcdb2] transition-colors">
-                <Facebook size={20} />
-              </a>
-              <a href="#" className="text-white hover:text-[#ffcdb2] transition-colors">
-                <Instagram size={20} />
-              </a>
-              <a href="#" className="text-white hover:text-[#ffcdb2] transition-colors">
-                <MessageCircle size={20} />
-              </a>
-            </div>
           </div>
           
           <div>
