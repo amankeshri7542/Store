@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Home, User, Package, Phone, ChevronDown } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,71 +24,84 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <header className={`fixed top-0 left-0 w-full bg-white bg-opacity-95 z-50 transition-all duration-300 ${scrolled ? 'shadow-md py-2' : 'py-3'}`}>
+    <header className={`fixed top-0 left-0 w-full bg-[#30475e] z-50 transition-all duration-300 ${scrolled ? 'shadow-lg py-2' : 'py-3'}`}>
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <div className="text-[#b5838d] font-poppins font-bold text-xl md:text-2xl cursor-pointer">
+        <div className="text-[#ececec] font-poppins font-bold text-xl md:text-2xl cursor-pointer">
           Shiv Cement Store
         </div>
         <nav className="hidden md:block">
           <ul className="flex space-x-8">
-            <li><a href="#home" className="text-[#6d6875] hover:text-[#b5838d] font-medium transition-colors">Home</a></li>
-            <li><a href="#about" className="text-[#6d6875] hover:text-[#b5838d] font-medium transition-colors">About</a></li>
-            <li><a href="#products" className="text-[#6d6875] hover:text-[#b5838d] font-medium transition-colors">Products</a></li>
-            <li><a href="#contact" className="text-[#6d6875] hover:text-[#b5838d] font-medium transition-colors">Contact</a></li>
+            <li><a href="#home" className="text-[#ececec] hover:text-[#3282b8] font-medium transition-colors flex items-center"><Home size={18} className="mr-1" />Home</a></li>
+            <li><a href="#about" className="text-[#ececec] hover:text-[#3282b8] font-medium transition-colors flex items-center"><User size={18} className="mr-1" />About</a></li>
+            <li><a href="#products" className="text-[#ececec] hover:text-[#3282b8] font-medium transition-colors flex items-center"><Package size={18} className="mr-1" />Products</a></li>
+            <li><a href="#contact" className="text-[#ececec] hover:text-[#3282b8] font-medium transition-colors flex items-center"><Phone size={18} className="mr-1" />Contact</a></li>
           </ul>
         </nav>
         <button 
-          className="md:hidden text-[#6d6875] focus:outline-none" 
+          className="md:hidden text-[#ececec] focus:outline-none bg-[#3282b8] p-2 rounded-full" 
           onClick={toggleMenu}
+          aria-label="Toggle menu"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
       
-      {/* Mobile menu */}
-      {isOpen && (
-        <div className="md:hidden bg-white px-4 py-3 shadow-inner">
-          <ul className="space-y-3">
+      {/* Mobile menu - Slide down with animation */}
+      <div 
+        className={`md:hidden bg-[#222831] overflow-hidden transition-all duration-300 ${
+          isOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
+        }`}
+      >
+        <div className="container mx-auto px-4 py-2">
+          <ul className="space-y-1">
             <li>
               <a 
                 href="#home" 
-                className="block text-[#6d6875] hover:text-[#b5838d] font-medium py-2 transition-colors"
-                onClick={() => setIsOpen(false)}
+                className="flex items-center text-[#ececec] hover:text-[#3282b8] hover:bg-[#393e46] font-medium py-3 px-3 rounded transition-all"
+                onClick={closeMenu}
               >
-                Home
+                <Home size={20} className="mr-3 text-[#3282b8]" />
+                <span>Home</span>
               </a>
             </li>
             <li>
               <a 
                 href="#about" 
-                className="block text-[#6d6875] hover:text-[#b5838d] font-medium py-2 transition-colors"
-                onClick={() => setIsOpen(false)}
+                className="flex items-center text-[#ececec] hover:text-[#3282b8] hover:bg-[#393e46] font-medium py-3 px-3 rounded transition-all"
+                onClick={closeMenu}
               >
-                About
+                <User size={20} className="mr-3 text-[#3282b8]" />
+                <span>About</span>
               </a>
             </li>
             <li>
               <a 
                 href="#products" 
-                className="block text-[#6d6875] hover:text-[#b5838d] font-medium py-2 transition-colors"
-                onClick={() => setIsOpen(false)}
+                className="flex items-center text-[#ececec] hover:text-[#3282b8] hover:bg-[#393e46] font-medium py-3 px-3 rounded transition-all"
+                onClick={closeMenu}
               >
-                Products
+                <Package size={20} className="mr-3 text-[#3282b8]" />
+                <span>Products</span>
               </a>
             </li>
             <li>
               <a 
                 href="#contact" 
-                className="block text-[#6d6875] hover:text-[#b5838d] font-medium py-2 transition-colors"
-                onClick={() => setIsOpen(false)}
+                className="flex items-center text-[#ececec] hover:text-[#3282b8] hover:bg-[#393e46] font-medium py-3 px-3 rounded transition-all"
+                onClick={closeMenu}
               >
-                Contact
+                <Phone size={20} className="mr-3 text-[#3282b8]" />
+                <span>Contact</span>
               </a>
             </li>
           </ul>
         </div>
-      )}
+      </div>
     </header>
   );
 };

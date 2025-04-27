@@ -4,6 +4,7 @@
 @tailwind utilities;
 
 :root {
+  /* Light theme (original colors) */
   --background: 0 0% 100%;
   --foreground: 20 14.3% 4.1%;
   --muted: 60 4.8% 95.9%;
@@ -25,35 +26,49 @@
   --ring: 346 40% 55%; /* #b5838d */
   --radius: 0.5rem;
   
-  /* Custom colors */
+  /* Custom colors - Light theme */
   --color-primary-100: 15 89% 85%; /* #ffcdb2 */
   --color-primary-200: 10 100% 82%; /* #ffb4a2 */
   --color-secondary-100: 356 66% 75%; /* #e5989b */
   --color-secondary-200: 346 40% 55%; /* #b5838d */
   --color-neutral-100: 280 8% 44%; /* #6d6875 */
+  
+  /* Cement industry colors - global */
+  --cement-dark: 215 16% 16%; /* #222831 */
+  --cement-medium: 210 24% 28%; /* #30475e */
+  --cement-blue: 203 57% 46%; /* #3282b8 */
+  --cement-light: 0 0% 93%; /* #ececec */
 }
 
 .dark {
-  --background: 240 10% 3.9%;
-  --foreground: 0 0% 98%;
-  --muted: 240 3.7% 15.9%;
-  --muted-foreground: 240 5% 64.9%;
-  --popover: 240 10% 3.9%;
-  --popover-foreground: 0 0% 98%;
-  --card: 240 10% 3.9%;
-  --card-foreground: 0 0% 98%;
-  --border: 240 3.7% 15.9%;
-  --input: 240 3.7% 15.9%;
-  --primary: 15 89% 85%;
+  /* Dark theme - Cement Industry Style */
+  --background: 215 16% 16%; /* #222831 */
+  --foreground: 0 0% 93%; /* #ececec */
+  --muted: 210 24% 28%; /* #30475e */
+  --muted-foreground: 0 0% 85%;
+  --popover: 215 16% 16%; /* #222831 */
+  --popover-foreground: 0 0% 93%; /* #ececec */
+  --card: 210 24% 28%; /* #30475e */
+  --card-foreground: 0 0% 93%; /* #ececec */
+  --border: 210 10% 35%; /* darker #30475e */
+  --input: 213 14% 22%; /* #393e46 */
+  --primary: 203 57% 46%; /* #3282b8 */
   --primary-foreground: 0 0% 98%;
-  --secondary: 10 100% 82%;
+  --secondary: 210 24% 28%; /* #30475e */
   --secondary-foreground: 0 0% 98%;
-  --accent: 356 66% 75%;
+  --accent: 203 57% 46%; /* #3282b8 */
   --accent-foreground: 0 0% 98%;
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
-  --ring: 346 40% 55%;
+  --ring: 203 57% 46%; /* #3282b8 */
   --radius: 0.5rem;
+  
+  /* Custom colors - Dark theme */
+  --color-primary-100: 203 57% 46%; /* #3282b8 */
+  --color-primary-200: 210 24% 28%; /* #30475e */
+  --color-secondary-100: 213 14% 22%; /* #393e46 */
+  --color-secondary-200: 215 16% 16%; /* #222831 */
+  --color-neutral-100: 0 0% 93%; /* #ececec */
 }
 
 @layer base {

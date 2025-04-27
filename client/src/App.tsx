@@ -4,6 +4,7 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ThemeProvider } from "next-themes";
 import NotFound from "@/pages/not-found";
 import LoadingScreen from "@/components/LoadingScreen";
 import Navbar from "@/components/Navbar";
@@ -15,7 +16,7 @@ import Footer from "@/components/Footer";
 
 function HomePage() {
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden bg-background">
       <Navbar />
       <HeroSection />
       <AboutSection />
@@ -47,12 +48,14 @@ function App() {
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        {loading ? <LoadingScreen /> : <Router />}
-      </TooltipProvider>
-    </QueryClientProvider>
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          {loading ? <LoadingScreen /> : <Router />}
+        </TooltipProvider>
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 }
 

@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import ProductCard from "@/components/ui/product-card";
-import { cementProducts, steelProducts, materialProducts } from "@/data/products";
+import { cementProducts, steelProducts, materialProducts, Product } from "@/data/products";
+import { useQuery } from "@tanstack/react-query";
 
 type ProductCategory = "all" | "cement" | "steel" | "materials";
 
@@ -11,6 +12,62 @@ const ProductsSection = () => {
   const { ref: cementRef, isVisible: isCementVisible } = useIntersectionObserver({ threshold: 0.1 });
   const { ref: steelRef, isVisible: isSteelVisible } = useIntersectionObserver({ threshold: 0.1 });
   const { ref: materialsRef, isVisible: isMaterialsVisible } = useIntersectionObserver({ threshold: 0.1 });
+  
+  // State for storing updated products
+  const [updatedCementProducts, setUpdatedCementProducts] = useState(cementProducts);
+  const [updatedSteelProducts, setUpdatedSteelProducts] = useState(steelProducts);
+  const [updatedMaterialProducts, setUpdatedMaterialProducts] = useState(materialProducts);
+  const [pricesLastUpdated, setPricesLastUpdated] = useState<string | null>(null);
+
+  // Fetch prices from admin JSON file
+  const { data: priceData, isLoading } = useQuery({
+    queryKey: ['/admin/products.json'],
+    queryFn: async () => {
+      const response = await fetch('/admin/products.json');
+      if (!response.ok) {
+        throw new Error('Failed to fetch updated prices');
+      }
+      return response.json();
+    },
+    refetchInterval: 30000, // Refetch every 30 seconds to get latest prices
+  });
+
+  // Update product prices when price data is fetched
+  useEffect(() => {
+    if (priceData?.products) {
+      // Create a map for quick lookup of prices by product name
+      const priceMap = new Map(
+        priceData.products.map((item: { id: number; name: string; price: number }) => [item.name, item.price])
+      );
+
+      // Update cement products with new prices
+      setUpdatedCementProducts(
+        cementProducts.map(product => {
+          const newPrice = priceMap.get(product.name);
+          return newPrice ? { ...product, price: newPrice } : product;
+        })
+      );
+
+      // Update steel products with new prices
+      setUpdatedSteelProducts(
+        steelProducts.map(product => {
+          const newPrice = priceMap.get(product.name);
+          return newPrice ? { ...product, price: newPrice } : product;
+        })
+      );
+
+      // Update material products with new prices
+      setUpdatedMaterialProducts(
+        materialProducts.map(product => {
+          const newPrice = priceMap.get(product.name);
+          return newPrice ? { ...product, price: newPrice } : product;
+        })
+      );
+
+      // Set last updated timestamp
+      setPricesLastUpdated(new Date().toLocaleString());
+    }
+  }, [priceData]);
 
   return (
     <section id="products" className="py-16 md:py-24 bg-white">
