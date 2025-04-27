@@ -36,6 +36,36 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Admin API to update product prices
+  app.post("/api/admin/update-prices", async (req: Request, res: Response) => {
+    try {
+      const { username, password, products } = req.body;
+      
+      // Validate admin credentials
+      if (username !== "Manoj Kumar" || password !== "amankumar") {
+        return res.status(401).json({ error: "Unauthorized" });
+      }
+      
+      // In a real app, you would save to a database here
+      // For this example, we'll save to the JSON file
+      const fs = require('fs');
+      const path = require('path');
+      
+      const productsFilePath = path.join(process.cwd(), '/public/admin/products.json');
+      
+      // Write the updated products to the file
+      fs.writeFileSync(
+        productsFilePath,
+        JSON.stringify({ products }, null, 2)
+      );
+      
+      res.status(200).json({ success: true, message: "Prices updated successfully" });
+    } catch (error) {
+      console.error('Error updating prices:', error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;

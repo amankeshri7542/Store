@@ -1,0 +1,49 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "UltraTech Cement (PPC)",
+      "price": 380
+    },
+    {
+      "id": 2,
+      "name": "UltraTech Cement (OPC)",
+      "price": 420
+    },
+    {
+      "id": 3,
+      "name": "Ambuja Cement",
+      "price": 370
+    },
+    {
+      "id": 4,
+      "name": "JSW Steel TMT Bars",
+      "price": 65
+    },
+    {
+      "id": 5,
+      "name": "TATA Steel TMT Bars",
+      "price": 70
+    },
+    {
+      "id": 6,
+      "name": "Red Bricks (per thousand)",
+      "price": 6500
+    },
+    {
+      "id": 7,
+      "name": "Fly Ash Bricks",
+      "price": 7000
+    },
+    {
+      "id": 8,
+      "name": "Construction Sand (per ton)",
+      "price": 3200
+    },
+    {
+      "id": 9,
+      "name": "Stone Chips (per ton)",
+      "price": 2800
+    }
+  ]
+}
