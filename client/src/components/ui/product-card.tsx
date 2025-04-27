@@ -34,7 +34,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   };
 
   return (
-    <div className="product-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all">
+    <div className="product-card bg-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all border border-muted">
       <div className="relative h-48 overflow-hidden">
         <img 
           src={image} 
@@ -42,23 +42,23 @@ const ProductCard = ({ product }: ProductCardProps) => {
           alt={name} 
         />
         {badge && (
-          <div className="absolute top-0 right-0 bg-[#ffb4a2] text-white py-1 px-3 rounded-bl-lg font-medium">
+          <div className="absolute top-0 right-0 bg-primary text-primary-foreground py-1 px-3 rounded-bl-lg font-medium">
             {badge}
           </div>
         )}
       </div>
       <div className="p-5">
-        <h4 className="font-poppins font-semibold text-lg mb-2">{name}</h4>
+        <h4 className="font-poppins font-semibold text-lg mb-2 text-foreground">{name}</h4>
         <div className="flex items-center mb-3">
           <div className="flex text-yellow-400">
             {renderStars()}
           </div>
-          <span className="text-sm text-gray-500 ml-2">{rating}/5</span>
+          <span className="text-sm text-muted-foreground ml-2">{rating}/5</span>
         </div>
-        <p className="text-gray-600 mb-3 text-sm">{description}</p>
+        <p className="text-muted-foreground mb-3 text-sm">{description}</p>
         <div className="flex justify-between items-center">
-          <span className="text-[#b5838d] font-bold text-xl">₹{price}</span>
-          <span className="text-gray-500 text-sm">Per unit</span>
+          <span className="text-primary font-bold text-xl">₹{price}</span>
+          <span className="text-muted-foreground text-sm">Per unit</span>
         </div>
       </div>
     </div>

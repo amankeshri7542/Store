@@ -44,7 +44,7 @@ const ProductsSection = () => {
       setUpdatedCementProducts(
         cementProducts.map(product => {
           const newPrice = priceMap.get(product.name);
-          return newPrice ? { ...product, price: newPrice } : product;
+          return newPrice !== undefined ? { ...product, price: Number(newPrice) } : product;
         })
       );
 
@@ -52,7 +52,7 @@ const ProductsSection = () => {
       setUpdatedSteelProducts(
         steelProducts.map(product => {
           const newPrice = priceMap.get(product.name);
-          return newPrice ? { ...product, price: newPrice } : product;
+          return newPrice !== undefined ? { ...product, price: Number(newPrice) } : product;
         })
       );
 
@@ -60,7 +60,7 @@ const ProductsSection = () => {
       setUpdatedMaterialProducts(
         materialProducts.map(product => {
           const newPrice = priceMap.get(product.name);
-          return newPrice ? { ...product, price: newPrice } : product;
+          return newPrice !== undefined ? { ...product, price: Number(newPrice) } : product;
         })
       );
 
@@ -70,14 +70,23 @@ const ProductsSection = () => {
   }, [priceData]);
 
   return (
-    <section id="products" className="py-16 md:py-24 bg-white">
+    <section id="products" className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="font-poppins font-bold text-3xl md:text-4xl text-[#6d6875] mb-3">Our Products</h2>
-          <div className="w-20 h-1 bg-[#ffb4a2] mx-auto mb-6"></div>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <h2 className="font-poppins font-bold text-3xl md:text-4xl text-foreground mb-3">Our Products</h2>
+          <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
             We offer a wide range of high-quality construction materials from trusted brands at competitive prices.
           </p>
+          {isLoading ? (
+            <div className="mt-4 text-accent">Loading latest prices...</div>
+          ) : pricesLastUpdated ? (
+            <div className="mt-4 text-sm text-muted-foreground">
+              <span className="bg-muted px-2 py-1 rounded">
+                Prices last updated: {pricesLastUpdated}
+              </span>
+            </div>
+          ) : null}
         </div>
         
         {/* Category Navigation */}
@@ -85,8 +94,8 @@ const ProductsSection = () => {
           <button 
             className={`py-2 px-6 rounded-full font-medium transition-all ${
               activeCategory === "all" 
-                ? "bg-[#ffcdb2] text-[#6d6875]" 
-                : "bg-gray-200 text-gray-700"
+                ? "bg-primary text-primary-foreground" 
+                : "bg-muted text-muted-foreground hover:bg-primary/20"
             }`}
             onClick={() => setActiveCategory("all")}
           >
@@ -95,8 +104,8 @@ const ProductsSection = () => {
           <button 
             className={`py-2 px-6 rounded-full font-medium transition-all ${
               activeCategory === "cement" 
-                ? "bg-[#ffcdb2] text-[#6d6875]" 
-                : "bg-gray-200 text-gray-700"
+                ? "bg-primary text-primary-foreground" 
+                : "bg-muted text-muted-foreground hover:bg-primary/20"
             }`}
             onClick={() => setActiveCategory("cement")}
           >
@@ -105,8 +114,8 @@ const ProductsSection = () => {
           <button 
             className={`py-2 px-6 rounded-full font-medium transition-all ${
               activeCategory === "steel" 
-                ? "bg-[#ffcdb2] text-[#6d6875]" 
-                : "bg-gray-200 text-gray-700"
+                ? "bg-primary text-primary-foreground" 
+                : "bg-muted text-muted-foreground hover:bg-primary/20"
             }`}
             onClick={() => setActiveCategory("steel")}
           >
@@ -115,8 +124,8 @@ const ProductsSection = () => {
           <button 
             className={`py-2 px-6 rounded-full font-medium transition-all ${
               activeCategory === "materials" 
-                ? "bg-[#ffcdb2] text-[#6d6875]" 
-                : "bg-gray-200 text-gray-700"
+                ? "bg-primary text-primary-foreground" 
+                : "bg-muted text-muted-foreground hover:bg-primary/20"
             }`}
             onClick={() => setActiveCategory("materials")}
           >
@@ -132,9 +141,9 @@ const ProductsSection = () => {
           transition={{ duration: 0.6 }}
           className={activeCategory === "all" || activeCategory === "cement" ? "block" : "hidden"}
         >
-          <h3 className="font-poppins font-semibold text-2xl text-[#6d6875] mb-6">Cement Brands</h3>
+          <h3 className="font-poppins font-semibold text-2xl text-foreground mb-6">Cement Brands</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {cementProducts.map((product) => (
+            {updatedCementProducts.map((product) => (
               <ProductCard 
                 key={product.id}
                 product={product}
@@ -151,9 +160,9 @@ const ProductsSection = () => {
           transition={{ duration: 0.6 }}
           className={`mt-16 ${activeCategory === "all" || activeCategory === "steel" ? "block" : "hidden"}`}
         >
-          <h3 className="font-poppins font-semibold text-2xl text-[#6d6875] mb-6">Steel Brands</h3>
+          <h3 className="font-poppins font-semibold text-2xl text-foreground mb-6">Steel Brands</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {steelProducts.map((product) => (
+            {updatedSteelProducts.map((product) => (
               <ProductCard 
                 key={product.id}
                 product={product}
@@ -170,9 +179,9 @@ const ProductsSection = () => {
           transition={{ duration: 0.6 }}
           className={`mt-16 ${activeCategory === "all" || activeCategory === "materials" ? "block" : "hidden"}`}
         >
-          <h3 className="font-poppins font-semibold text-2xl text-[#6d6875] mb-6">Materials</h3>
+          <h3 className="font-poppins font-semibold text-2xl text-foreground mb-6">Materials</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {materialProducts.map((product) => (
+            {updatedMaterialProducts.map((product) => (
               <ProductCard 
                 key={product.id}
                 product={product}
@@ -181,23 +190,23 @@ const ProductsSection = () => {
           </div>
         </motion.div>
         
-        <div className="text-center mt-12 p-6 bg-gray-100 rounded-lg shadow-sm">
-          <h4 className="font-semibold text-lg text-[#6d6875] mb-2">Pricing Information</h4>
-          <p className="text-gray-700">
+        <div className="text-center mt-12 p-6 bg-card rounded-lg shadow-md">
+          <h4 className="font-semibold text-lg text-foreground mb-2">Pricing Information</h4>
+          <p className="text-card-foreground">
             Current prices shown are approximate. Actual prices may vary based on:
           </p>
-          <ul className="text-sm text-gray-600 mt-2 space-y-1 max-w-lg mx-auto">
+          <ul className="text-sm text-muted-foreground mt-2 space-y-1 max-w-lg mx-auto">
             <li>• Quantity ordered (bulk discounts available)</li>
             <li>• Current market conditions</li>
             <li>• Seasonal variations</li>
             <li>• Special promotions (check with our store)</li>
           </ul>
-          <p className="text-[#b5838d] font-medium mt-3">
+          <p className="text-primary font-medium mt-3">
             We guarantee competitive pricing and price matching with authorized dealers!
           </p>
-          <div className="mt-4 pt-3 border-t border-gray-200">
-            <p className="font-medium text-[#6d6875]">
-              <span className="bg-yellow-100 px-2 py-1 rounded">Note:</span> For purchases, please visit our store or contact us directly.
+          <div className="mt-4 pt-3 border-t border-muted">
+            <p className="font-medium text-foreground">
+              <span className="bg-primary/20 text-primary px-2 py-1 rounded">Note:</span> For purchases, please visit our store or contact us directly.
             </p>
           </div>
         </div>
