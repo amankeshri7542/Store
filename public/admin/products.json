@@ -3,22 +3,22 @@
     {
       "id": 1,
       "name": "UltraTech Cement (PPC)",
-      "price": 380
+      "price": 300
     },
     {
       "id": 2,
       "name": "UltraTech Cement (OPC)",
-      "price": 420
+      "price": 301
     },
     {
       "id": 3,
       "name": "Ambuja Cement",
-      "price": 370
+      "price": 299
     },
     {
       "id": 4,
       "name": "JSW Steel TMT Bars",
-      "price": 65
+      "price": 302
     },
     {
       "id": 5,
