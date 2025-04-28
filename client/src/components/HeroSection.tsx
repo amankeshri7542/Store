@@ -22,7 +22,7 @@ const HeroSection = () => {
         >
           <h1 className="font-poppins font-bold text-4xl md:text-5xl lg:text-6xl text-white mb-4 drop-shadow-lg">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ffcdb2] to-[#ffb4a2] inline-block">Shiv Cement Store</span>
-            <span className="block text-2xl md:text-3xl mt-2 font-medium text-[#ffcdb2]">— Since 1999 —</span>
+            <span className="block text-2xl md:text-3xl mt-2 font-medium text-[#ffcdb2]">— Since 2000 —</span>
           </h1>
           <p className="font-roboto text-lg md:text-xl text-gray-200 mb-8">
             Trusted by 1000+ Customers | Rated 4.8/5 ⭐

@@ -155,7 +155,7 @@ const ProductsSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isMaterialsVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
-          className={`mt-16 ${activeCategory === "all" || activeCategory === "materials" ? "block" : "hidden"}`}
+          className={`mt-16 ${activeCategory === "all" || activeCategory === "material" ? "block" : "hidden"}`}
         >
           <h3 className="font-poppins font-semibold text-2xl text-foreground mb-6">Materials</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
