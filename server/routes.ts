@@ -54,7 +54,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       // Here you would handle the image upload and store it
       // For now, we'll just return a mock URL
-      const imageUrl = `/uploads/${Date.now()}.jpg`;
+      const imageUrl = `/client/public/${Date.now()}.jpg`;
       res.json({ imageUrl });
     } catch (error) {
       console.error('Error uploading image:', error);
