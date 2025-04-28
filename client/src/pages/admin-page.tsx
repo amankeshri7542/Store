@@ -126,6 +126,31 @@ const AdminPage = () => {
     ));
   };
 
+  const handleDeleteProduct = async (productId: number) => {
+    try {
+      const response = await fetch('/api/admin/delete-product', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: VALID_USERNAME,
+          password: VALID_PASSWORD,
+          productId
+        })
+      });
+      
+      if (response.ok) {
+        loadProducts();
+        setSaveMessage('Product deleted successfully!');
+        setTimeout(() => setSaveMessage(''), 3000);
+      }
+    } catch (error) {
+      console.error('Error deleting product:', error);
+      setSaveMessage('Error deleting product');
+    }
+  };
+
   const handleSaveChanges = async () => {
     setSaveMessage('Saving changes...');
     try {
@@ -299,16 +324,24 @@ const AdminPage = () => {
                             />
                           </td>
                           <td className="py-3 px-4">
-                            <button
-                              onClick={() => handleStockToggle(product.id)}
-                              className={`py-1 px-3 rounded ${
-                                product.inStock
-                                  ? 'bg-green-500 text-white'
-                                  : 'bg-red-500 text-white'
-                              }`}
-                            >
-                              {product.inStock ? 'In Stock' : 'Out of Stock'}
-                            </button>
+                            <div className="flex gap-2">
+                              <button
+                                onClick={() => handleStockToggle(product.id)}
+                                className={`py-1 px-3 rounded ${
+                                  product.inStock
+                                    ? 'bg-green-500 text-white'
+                                    : 'bg-red-500 text-white'
+                                }`}
+                              >
+                                {product.inStock ? 'In Stock' : 'Out of Stock'}
+                              </button>
+                              <button
+                                onClick={() => handleDeleteProduct(product.id)}
+                                className="bg-red-500 text-white py-1 px-3 rounded"
+                              >
+                                Delete
+                              </button>
+                            </div>
                           </td>
                         </tr>
                       ))}

@@ -96,6 +96,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Delete product endpoint
+  app.post("/api/admin/delete-product", async (req: Request, res: Response) => {
+    try {
+      const { username, password, productId } = req.body;
+      
+      if (username !== "Manoj Kumar" || password !== "amankumar") {
+        return res.status(401).json({ error: "Unauthorized" });
+      }
+
+      const productsFilePath = path.join(process.cwd(), '/public/admin/products.json');
+      const productsData = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+      
+      productsData.products = productsData.products.filter((product: any) => product.id !== productId);
+      
+      fs.writeFileSync(productsFilePath, JSON.stringify(productsData, null, 2));
+      
+      res.status(200).json({ success: true, message: "Product deleted successfully" });
+    } catch (error) {
+      console.error('Error deleting product:', error);
+      res.status(500).json({ error: "Failed to delete product" });
+    }
+  });
+
   // Admin API to update products
   app.post("/api/admin/update-products", async (req: Request, res: Response) => {
     try {

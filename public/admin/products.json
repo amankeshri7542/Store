@@ -1,69 +1,105 @@
+
 {
   "products": [
     {
       "id": 1,
       "name": "UltraTech Cement",
-      "price": 1
+      "image": "/Ultratech Cement.jpg",
+      "description": "Premium quality cement for all construction needs.",
+      "price": 500,
+      "rating": 4.5,
+      "category": "cement",
+      "inStock": true
     },
     {
       "id": 2,
       "name": "ACC Cement",
-      "price": 2
+      "image": "/cment_Bags.webp",
+      "description": "High-strength cement for durable construction.",
+      "price": 500,
+      "rating": 5.0,
+      "category": "cement",
+      "inStock": true
     },
     {
       "id": 3,
       "name": "Ambuja Cement",
-      "price": 2
+      "image": "/615gTOt7O2L.jpg",
+      "description": "Reliable cement for all weather conditions.",
+      "price": 500,
+      "rating": 4.0,
+      "category": "cement",
+      "inStock": true
     },
     {
       "id": 4,
       "name": "JK Cement",
-      "price": 4
+      "image": "/100mm-concrete-cover-block-500x500.webp",
+      "description": "White cement for decorative finishes.",
+      "price": 500,
+      "rating": 3.5,
+      "category": "cement",
+      "inStock": true
     },
     {
       "id": 5,
       "name": "Tata Steel TMT Bars",
-      "price": 5
+      "image": "/square-shape-polished-finish-steel-tmt-ring-for-for-building-construction-815.jpg",
+      "description": "Premium quality TMT bars for strong construction.",
+      "price": 500,
+      "rating": 5.0,
+      "category": "steel",
+      "inStock": true
     },
     {
       "id": 6,
       "name": "Mahaveer Steel Rods",
-      "price": 6
+      "image": "/square-shape-polished-finish-steel-tmt-ring-for-for-building-construction-815.jpg",
+      "description": "Durable steel rods for resilient structures.",
+      "price": 500,
+      "rating": 4.0,
+      "category": "steel",
+      "inStock": true
     },
     {
       "id": 7,
       "name": "Panther Steel Mesh",
-      "price": 7000
+      "image": "/square-shape-polished-finish-steel-tmt-ring-for-for-building-construction-815.jpg",
+      "description": "Cost-effective steel for standard constructions.",
+      "price": 7000,
+      "rating": 3.5,
+      "category": "steel",
+      "inStock": true
     },
     {
       "id": 8,
       "name": "Red Bricks",
-      "price": 320
+      "image": "/red-bricks-normal-557.jpg",
+      "description": "High-quality red bricks for durable wall construction.",
+      "price": 320,
+      "rating": 4.8,
+      "category": "material",
+      "inStock": true
     },
     {
       "id": 9,
       "name": "Stone Chips",
-      "price": 2800
+      "image": "/stone-chips-2.jpg",
+      "description": "Various sizes available for different construction needs.",
+      "price": 2800,
+      "rating": 4.5,
+      "category": "material",
+      "inStock": true
     },
     {
       "id": 10,
       "name": "tesst",
-      "price": 10,
       "image": "/uploads/1745860875804.jpg",
       "description": "tesst - Quality construction material",
-      "rating": 4,
+      "price": 10,
+      "rating": 4.0,
       "category": "material",
       "inStock": false
-    },
-    {
-      "id": 11,
-      "name": "sample ",
-      "image": "/uploads/1745861299471.jpg",
-      "description": "sample  - Quality construction material",
-      "price": 100,
-      "rating": 4,
-      "category": "material",
-      "inStock": true
     }
   ]
 }
