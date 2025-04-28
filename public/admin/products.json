@@ -98,7 +98,7 @@
       "price": 10,
       "rating": 4,
       "category": "material",
-      "inStock": false
+      "inStock": true
     },
     {
       "id": 11,
