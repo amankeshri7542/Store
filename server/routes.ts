@@ -76,7 +76,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const newProduct = {
         id: productsData.products.length + 1,
-        ...product
+        name: product.name,
+        image: product.image,
+        description: `${product.name} - Quality construction material`,
+        price: product.price,
+        rating: 4.0,
+        category: "material",
+        inStock: product.inStock
       };
       
       productsData.products.push(newProduct);

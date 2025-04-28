@@ -50,6 +50,9 @@
       "name": "tesst",
       "price": 10,
       "image": "/uploads/1745860875804.jpg",
+      "description": "tesst - Quality construction material",
+      "rating": 4.0,
+      "category": "material",
       "inStock": false
     }
   ]
