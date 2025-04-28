@@ -14,9 +14,9 @@ const ProductsSection = () => {
   const { ref: materialsRef, isVisible: isMaterialsVisible } = useIntersectionObserver({ threshold: 0.1 });
   
   // State for storing updated products
-  const [updatedCementProducts, setUpdatedCementProducts] = useState(cementProducts);
-  const [updatedSteelProducts, setUpdatedSteelProducts] = useState(steelProducts);
-  const [updatedMaterialProducts, setUpdatedMaterialProducts] = useState(materialProducts);
+  const [updatedCementProducts, setUpdatedCementProducts] = useState<Product[]>([]);
+  const [updatedSteelProducts, setUpdatedSteelProducts] = useState<Product[]>([]);
+  const [updatedMaterialProducts, setUpdatedMaterialProducts] = useState<Product[]>([]);
   const [pricesLastUpdated, setPricesLastUpdated] = useState<string | null>(null);
 
   // Fetch prices from admin JSON file
@@ -35,34 +35,12 @@ const ProductsSection = () => {
   // Update product prices when price data is fetched
   useEffect(() => {
     if (priceData?.products) {
-      // Create a map for quick lookup of prices by product name
-      const priceMap = new Map(
-        priceData.products.map((item: { id: number; name: string; price: number }) => [item.name, item.price])
-      );
-
-      // Update cement products with new prices
-      setUpdatedCementProducts(
-        cementProducts.map(product => {
-          const newPrice = priceMap.get(product.name);
-          return newPrice !== undefined ? { ...product, price: Number(newPrice) } : product;
-        })
-      );
-
-      // Update steel products with new prices
-      setUpdatedSteelProducts(
-        steelProducts.map(product => {
-          const newPrice = priceMap.get(product.name);
-          return newPrice !== undefined ? { ...product, price: Number(newPrice) } : product;
-        })
-      );
-
-      // Update material products with new prices
-      setUpdatedMaterialProducts(
-        materialProducts.map(product => {
-          const newPrice = priceMap.get(product.name);
-          return newPrice !== undefined ? { ...product, price: Number(newPrice) } : product;
-        })
-      );
+      const products = priceData.products;
+      
+      // Filter products by category
+      setUpdatedCementProducts(products.filter(product => product.category === "cement"));
+      setUpdatedSteelProducts(products.filter(product => product.category === "steel"));
+      setUpdatedMaterialProducts(products.filter(product => product.category === "material"));
 
       // Set last updated timestamp
       setPricesLastUpdated(new Date().toLocaleString());
