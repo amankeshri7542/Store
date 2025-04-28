@@ -81,7 +81,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         description: `${product.name} - Quality construction material`,
         price: product.price,
         rating: 4.0,
-        category: "material",
+        category: product.category,
         inStock: product.inStock
       };
       

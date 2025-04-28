@@ -101,13 +101,13 @@ const ProductsSection = () => {
           </button>
           <button 
             className={`py-2 px-6 rounded-full font-medium transition-all ${
-              activeCategory === "materials" 
+              activeCategory === "material" 
                 ? "bg-primary text-primary-foreground" 
                 : "bg-muted text-muted-foreground hover:bg-primary/20"
             }`}
-            onClick={() => setActiveCategory("materials")}
+            onClick={() => setActiveCategory("material")}
           >
-            Materials
+            Other Materials
           </button>
         </div>
         

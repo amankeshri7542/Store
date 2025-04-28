@@ -27,7 +27,8 @@ const AdminPage = () => {
     name: "",
     price: 0,
     image: "",
-    inStock: true
+    inStock: true,
+    category: "cement" // Default category
   });
 
   useEffect(() => {
@@ -253,6 +254,19 @@ const AdminPage = () => {
             <div className="mb-8 p-6 border border-border rounded-lg">
               <h2 className="text-xl font-semibold mb-4">Add New Product</h2>
               <form onSubmit={handleAddProduct} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium mb-1">Category</label>
+                  <select
+                    value={newProduct.category}
+                    onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value })}
+                    className="w-full p-2 border border-border rounded"
+                    required
+                  >
+                    <option value="cement">Cement</option>
+                    <option value="steel">Steel</option>
+                    <option value="material">Other Materials</option>
+                  </select>
+                </div>
                 <div>
                   <label className="block text-sm font-medium mb-1">Name</label>
                   <input

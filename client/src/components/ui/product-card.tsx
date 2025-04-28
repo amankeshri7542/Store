@@ -7,6 +7,7 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const { name, image, description, price, rating, badge } = product;
+  const imagePath = image.startsWith('/') ? image : `/${image}`;
   
   // Render full and half stars based on rating
   const renderStars = () => {
@@ -37,7 +38,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
     <div className="product-card bg-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all border border-muted">
       <div className="relative h-48 overflow-hidden">
         <img 
-          src={image} 
+          src={imagePath} 
           className="w-full h-full object-cover transition-transform hover:scale-105" 
           alt={name} 
         />
