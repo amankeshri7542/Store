@@ -44,6 +44,13 @@
       "id": 9,
       "name": "Stone Chips",
       "price": 2800
+    },
+    {
+      "id": 10,
+      "name": "tesst",
+      "price": 10,
+      "image": "/uploads/1745860875804.jpg",
+      "inStock": false
     }
   ]
 }
