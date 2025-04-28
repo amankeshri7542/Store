@@ -109,16 +109,6 @@
       "rating": 4,
       "category": "material",
       "inStock": true
-    },
-    {
-      "id": 12,
-      "name": "Sample steel ",
-      "image": "/uploads/1745862623864.jpg",
-      "description": "Sample steel  - Quality construction material",
-      "price": 9000,
-      "rating": 4,
-      "category": "steel",
-      "inStock": true
     }
   ]
 }
