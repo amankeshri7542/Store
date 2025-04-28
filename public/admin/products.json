@@ -51,9 +51,19 @@
       "price": 10,
       "image": "/uploads/1745860875804.jpg",
       "description": "tesst - Quality construction material",
-      "rating": 4.0,
+      "rating": 4,
       "category": "material",
       "inStock": false
+    },
+    {
+      "id": 11,
+      "name": "sample ",
+      "image": "/uploads/1745861299471.jpg",
+      "description": "sample  - Quality construction material",
+      "price": 100,
+      "rating": 4,
+      "category": "material",
+      "inStock": true
     }
   ]
 }
