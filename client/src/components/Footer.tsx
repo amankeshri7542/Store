@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <h3 className="font-poppins font-bold text-xl mb-4">Shiv Cement Store</h3>
-            <p className="text-gray-300 mb-4">Providing quality construction materials since 2000. Your trusted partner for all building needs.</p>
+            <p className="text-gray-300 mb-4">Providing quality construction materials since 1999. Your trusted partner for all building needs.</p>
           </div>
           
           <div>
