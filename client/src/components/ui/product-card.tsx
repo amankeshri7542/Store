@@ -7,7 +7,13 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const { name, image, description, price, rating, badge } = product;
-  const imagePath = image.startsWith('http') ? image : image.startsWith('/') ? image : `/${image}`;
+  const imagePath = image.startsWith('http') 
+    ? image 
+    : image.startsWith('/uploads/') 
+    ? image 
+    : image.startsWith('/') 
+    ? image 
+    : `/uploads/${image}`;
   
   // Render full and half stars based on rating
   const renderStars = () => {
