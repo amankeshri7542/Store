@@ -49,8 +49,49 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Admin API to update product prices
-  app.post("/api/admin/update-prices", async (req: Request, res: Response) => {
+  // Handle image upload
+  app.post("/api/admin/upload-image", async (req: Request, res: Response) => {
+    try {
+      // Here you would handle the image upload and store it
+      // For now, we'll just return a mock URL
+      const imageUrl = `/uploads/${Date.now()}.jpg`;
+      res.json({ imageUrl });
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      res.status(500).json({ error: "Failed to upload image" });
+    }
+  });
+
+  // Add new product
+  app.post("/api/admin/add-product", async (req: Request, res: Response) => {
+    try {
+      const { username, password, product } = req.body;
+      
+      if (username !== "Manoj Kumar" || password !== "amankumar") {
+        return res.status(401).json({ error: "Unauthorized" });
+      }
+
+      const productsFilePath = path.join(process.cwd(), '/public/admin/products.json');
+      const productsData = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+      
+      const newProduct = {
+        id: productsData.products.length + 1,
+        ...product
+      };
+      
+      productsData.products.push(newProduct);
+      
+      fs.writeFileSync(productsFilePath, JSON.stringify(productsData, null, 2));
+      
+      res.status(201).json({ success: true, product: newProduct });
+    } catch (error) {
+      console.error('Error adding product:', error);
+      res.status(500).json({ error: "Failed to add product" });
+    }
+  });
+
+  // Admin API to update products
+  app.post("/api/admin/update-products", async (req: Request, res: Response) => {
     try {
       const { username, password, products } = req.body;
       

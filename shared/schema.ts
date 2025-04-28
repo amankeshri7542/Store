@@ -18,6 +18,22 @@ export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 
 // Contact form schema (new)
+// Products schema
+export const products = pgTable("products", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  price: integer("price").notNull(),
+  image: text("image").notNull(),
+  inStock: boolean("in_stock").notNull().default(true),
+});
+
+export const productSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  price: z.number().min(0, "Price must be non-negative"),
+  image: z.string().min(1, "Image is required"),
+  inStock: z.boolean(),
+});
+
 export const contacts = pgTable("contacts", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),

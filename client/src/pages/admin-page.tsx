@@ -1,15 +1,16 @@
+
 import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
 
-// Credentials
 const VALID_USERNAME = "Manoj Kumar";
 const VALID_PASSWORD = "amankumar";
 
-// Define product type
 interface Product {
   id: number;
   name: string;
   price: number;
+  image: string;
+  inStock: boolean;
 }
 
 const AdminPage = () => {
@@ -22,8 +23,13 @@ const AdminPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [saveMessage, setSaveMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [newProduct, setNewProduct] = useState({
+    name: "",
+    price: 0,
+    image: "",
+    inStock: true
+  });
 
-  // Check if user is already logged in (from session storage)
   useEffect(() => {
     const storedIsLoggedIn = sessionStorage.getItem("isLoggedIn");
     if (storedIsLoggedIn === "true") {
@@ -32,7 +38,6 @@ const AdminPage = () => {
     }
   }, []);
 
-  // Load products from JSON file
   const loadProducts = async () => {
     try {
       setIsLoading(true);
@@ -46,10 +51,8 @@ const AdminPage = () => {
     }
   };
 
-  // Handle login
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (username === VALID_USERNAME && password === VALID_PASSWORD) {
       sessionStorage.setItem('isLoggedIn', 'true');
       setIsLoggedIn(true);
@@ -60,25 +63,73 @@ const AdminPage = () => {
     }
   };
 
-  // Handle price change
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const formData = new FormData();
+      formData.append('image', file);
+      
+      try {
+        const response = await fetch('/api/admin/upload-image', {
+          method: 'POST',
+          body: formData,
+        });
+        
+        if (response.ok) {
+          const { imageUrl } = await response.json();
+          setNewProduct({ ...newProduct, image: imageUrl });
+        }
+      } catch (error) {
+        console.error('Error uploading image:', error);
+      }
+    }
+  };
+
+  const handleAddProduct = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('/api/admin/add-product', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: VALID_USERNAME,
+          password: VALID_PASSWORD,
+          product: newProduct
+        })
+      });
+
+      if (response.ok) {
+        loadProducts();
+        setNewProduct({ name: "", price: 0, image: "", inStock: true });
+        setSaveMessage('Product added successfully!');
+      }
+    } catch (error) {
+      console.error('Error adding product:', error);
+      setSaveMessage('Error adding product');
+    }
+  };
+
   const handlePriceChange = (id: number, newPrice: string) => {
-    let price = parseFloat(newPrice);
+    const price = parseFloat(newPrice);
     if (isNaN(price) || price < 0) return;
-    
-    // Round to 2 decimal places to avoid floating point issues
-    price = Math.round(price * 100) / 100;
     
     setProducts(products.map(product => 
       product.id === id ? { ...product, price } : product
     ));
   };
 
-  // Handle save changes
+  const handleStockToggle = (id: number) => {
+    setProducts(products.map(product => 
+      product.id === id ? { ...product, inStock: !product.inStock } : product
+    ));
+  };
+
   const handleSaveChanges = async () => {
     setSaveMessage('Saving changes...');
-    
     try {
-      const response = await fetch('/api/admin/update-prices', {
+      const response = await fetch('/api/admin/update-products', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -90,21 +141,16 @@ const AdminPage = () => {
         })
       });
       
-      const result = await response.json();
-      
       if (response.ok) {
-        setSaveMessage('Prices updated successfully!');
+        setSaveMessage('Changes saved successfully!');
         setTimeout(() => setSaveMessage(''), 3000);
-      } else {
-        setSaveMessage(result.error || 'Failed to update prices.');
       }
     } catch (error) {
-      console.error('Error saving prices:', error);
-      setSaveMessage('Error connecting to server. Please try again.');
+      console.error('Error saving changes:', error);
+      setSaveMessage('Error saving changes');
     }
   };
 
-  // Handle logout
   const handleLogout = () => {
     sessionStorage.removeItem('isLoggedIn');
     setIsLoggedIn(false);
@@ -112,15 +158,11 @@ const AdminPage = () => {
     setPassword('');
   };
 
-  const goToHomePage = () => {
-    setLocation("/");
-  };
-
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
         <button 
-          onClick={goToHomePage}
+          onClick={() => setLocation("/")}
           className="mb-8 flex items-center text-primary hover:underline"
         >
           ← Back to Homepage
@@ -180,43 +222,99 @@ const AdminPage = () => {
             </form>
           </div>
         ) : (
-          <div className="bg-card rounded-lg p-8 shadow-lg max-w-3xl mx-auto">
-            <h1 className="text-2xl font-bold text-foreground mb-6 text-center">Price Management</h1>
+          <div className="bg-card rounded-lg p-8 shadow-lg max-w-4xl mx-auto">
+            <h1 className="text-2xl font-bold text-foreground mb-6 text-center">Product Management</h1>
             
+            <div className="mb-8 p-6 border border-border rounded-lg">
+              <h2 className="text-xl font-semibold mb-4">Add New Product</h2>
+              <form onSubmit={handleAddProduct} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium mb-1">Name</label>
+                  <input
+                    type="text"
+                    value={newProduct.name}
+                    onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
+                    className="w-full p-2 border border-border rounded"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Price</label>
+                  <input
+                    type="number"
+                    value={newProduct.price}
+                    onChange={(e) => setNewProduct({ ...newProduct, price: parseFloat(e.target.value) })}
+                    className="w-full p-2 border border-border rounded"
+                    required
+                    min="0"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Image</label>
+                  <input
+                    type="file"
+                    onChange={handleImageUpload}
+                    className="w-full p-2 border border-border rounded"
+                    accept="image/*"
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="w-full bg-primary text-primary-foreground py-2 rounded"
+                >
+                  Add Product
+                </button>
+              </form>
+            </div>
+
             {isLoading ? (
               <div className="text-center text-muted-foreground py-8">Loading products...</div>
             ) : (
               <>
-                {products.length === 0 ? (
-                  <div className="text-center text-muted-foreground py-8">No products found</div>
-                ) : (
-                  <div className="overflow-x-auto">
-                    <table className="w-full mb-6">
-                      <thead>
-                        <tr className="border-b border-border">
-                          <th className="text-left py-2 px-4 text-foreground">Product</th>
-                          <th className="text-left py-2 px-4 text-foreground">Price (₹)</th>
+                <div className="overflow-x-auto">
+                  <table className="w-full mb-6">
+                    <thead>
+                      <tr className="border-b border-border">
+                        <th className="text-left py-2 px-4">Image</th>
+                        <th className="text-left py-2 px-4">Product</th>
+                        <th className="text-left py-2 px-4">Price (₹)</th>
+                        <th className="text-left py-2 px-4">Stock Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {products.map((product) => (
+                        <tr key={product.id} className="border-b border-border">
+                          <td className="py-3 px-4">
+                            <img src={product.image} alt={product.name} className="w-16 h-16 object-cover rounded" />
+                          </td>
+                          <td className="py-3 px-4">{product.name}</td>
+                          <td className="py-3 px-4">
+                            <input
+                              type="number"
+                              value={product.price}
+                              onChange={(e) => handlePriceChange(product.id, e.target.value)}
+                              className="w-24 p-1 border border-border rounded"
+                              min="0"
+                            />
+                          </td>
+                          <td className="py-3 px-4">
+                            <button
+                              onClick={() => handleStockToggle(product.id)}
+                              className={`py-1 px-3 rounded ${
+                                product.inStock
+                                  ? 'bg-green-500 text-white'
+                                  : 'bg-red-500 text-white'
+                              }`}
+                            >
+                              {product.inStock ? 'In Stock' : 'Out of Stock'}
+                            </button>
+                          </td>
                         </tr>
-                      </thead>
-                      <tbody>
-                        {products.map((product) => (
-                          <tr key={product.id} className="border-b border-border">
-                            <td className="py-3 px-4 text-foreground">{product.name}</td>
-                            <td className="py-3 px-4">
-                              <input
-                                type="number"
-                                value={product.price}
-                                onChange={(e) => handlePriceChange(product.id, e.target.value)}
-                                className="w-24 p-1 border border-border rounded bg-input text-foreground"
-                                min="0"
-                              />
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                )}
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
                 
                 <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
                   <button
