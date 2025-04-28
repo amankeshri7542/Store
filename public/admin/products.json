@@ -1,4 +1,3 @@
-
 {
   "products": [
     {
@@ -17,7 +16,7 @@
       "image": "/cment_Bags.webp",
       "description": "High-strength cement for durable construction.",
       "price": 500,
-      "rating": 5.0,
+      "rating": 5,
       "category": "cement",
       "inStock": true
     },
@@ -27,7 +26,7 @@
       "image": "/615gTOt7O2L.jpg",
       "description": "Reliable cement for all weather conditions.",
       "price": 500,
-      "rating": 4.0,
+      "rating": 4,
       "category": "cement",
       "inStock": true
     },
@@ -47,7 +46,7 @@
       "image": "/square-shape-polished-finish-steel-tmt-ring-for-for-building-construction-815.jpg",
       "description": "Premium quality TMT bars for strong construction.",
       "price": 500,
-      "rating": 5.0,
+      "rating": 5,
       "category": "steel",
       "inStock": true
     },
@@ -57,7 +56,7 @@
       "image": "/square-shape-polished-finish-steel-tmt-ring-for-for-building-construction-815.jpg",
       "description": "Durable steel rods for resilient structures.",
       "price": 500,
-      "rating": 4.0,
+      "rating": 4,
       "category": "steel",
       "inStock": true
     },
@@ -97,9 +96,19 @@
       "image": "/uploads/1745860875804.jpg",
       "description": "tesst - Quality construction material",
       "price": 10,
-      "rating": 4.0,
+      "rating": 4,
       "category": "material",
       "inStock": false
+    },
+    {
+      "id": 11,
+      "name": "Sample Cement",
+      "image": "/uploads/1745861741160.jpg",
+      "description": "Sample Cement - Quality construction material",
+      "price": 1001,
+      "rating": 4,
+      "category": "material",
+      "inStock": true
     }
   ]
 }
